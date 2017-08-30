@@ -4,10 +4,48 @@ using UnityEngine;
 
 namespace Items {
 
-    public class GunBody : GunPart {
+    public class GunPartBody : GunPart {
 
-        double baseDamage;
-        double rateofFire;
+        private float baseDamage;
+        private AmmunitionType AmmunitionType;
 
+        /**
+         * Creates a blank GunPartBody
+        */
+        public GunPartBody() {
+            baseDamage = 0.0f;
+            AmmunitionType = AmmunitionType.Bullet;
+        }
+
+        /**
+         * Creates a randomly generated GunPartBody
+        */
+        public GunPartBody(int level) {
+            //TODO random generation
+            //Minimum Base Damage = 1?
+            //Maximum Base Damage = 50?
+            //Ammunition Type tiers?
+        }
+
+        public GunPartBody(AmmunitionType ammunitionType, float baseDamage) {
+        	this.ammunitionType = ammunitionType;
+        	this.baseDamage = baseDamage;
+        }
+
+        public float getBaseDamage() {
+        	return baseDamage;
+        }
+
+        public void setBaseDamage(float baseDamage) {
+        	this.baseDamage = baseDamage;
+        }
+
+        public AmmunitionType getAmmunitionType() {
+        	return ammunitionType;
+        }
+
+        public void setAmmunitionType(AmmunitionType ammunitionType) {
+        	this.ammunitionType = ammunitionType;
+        }
     }
 }
