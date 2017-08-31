@@ -6,6 +6,9 @@ namespace Items {
 
     public enum DamageType {
 
-        Kinetic, Fire, Shock, Ice, Corrosive
+        Kinetic, 
+        Fire, 
+        Shock, 
+        Ice
     }
 }

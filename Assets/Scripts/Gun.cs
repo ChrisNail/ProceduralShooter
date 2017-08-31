@@ -14,6 +14,15 @@ namespace Items {
         private GunPartStock stock;
         private GunPartTrigger trigger;
 
+        //Amount of ammo in the magazine
+        private int ammo;
+        //Whether or not this gun is firing
+        private bool firing;
+        //Time left until the next available shot
+        private float speedTimer;
+        //The amount of shots that have been charged by the gun
+        private int chargedShots;
+
         /**
          * Creates a blank Gun
         */
@@ -47,7 +56,54 @@ namespace Items {
 
         // Update is called once per frame
         public override void Update() {
+            //Take time since last frame away from firing speed countdown
+            speedTimer -= Time.deltaTime;
+            if (speedTimer < 0.0)
+                speedTimer = 0.0;
 
+            if (firing && speedTimer <= 0.0 && consumeAmmo()) {
+                if (FiringMode.Charge.Equals(getFiringMode())) {
+                    chargeShot();
+                } else {
+                    fireShot();
+                }
+            } else if (!firing && chargedShots > 0) {
+                fireCharge();
+            }
+        }
+
+        public bool consumeAmmo() {
+            if (ammo > getAmmunitionType().getConsumedAmmo()) {
+                ammo -= getAmmunitionType().getConsumedAmmo();
+                
+                return true;
+            }
+
+            return false;
+        }
+
+        public void chargeShot() {
+            
+        }
+
+        public bool getFiring() {
+            return firing;
+        }
+
+        public void setFiring(bool firing) {
+            this.firing = firing;
+        }
+
+        public bool toggleFiring() {
+            firing = !firing;
+        }
+
+        public int getChargedShots() {
+            return chargedShots;
+        }
+
+        public void setChargedShots(int chargedShots) {
+            this.chargedShots = chargedShots;
         }
 
         public GunPartBarrel getBarrel() {
