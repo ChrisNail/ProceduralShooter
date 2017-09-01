@@ -32,19 +32,19 @@ namespace Items {
         	this.accuracyBoost = accuracyBoost;
         }
 
-        public ZoomMode getZoomMode() {
+        public ZoomMode GetZoomMode() {
             return zoomMode;
         }
 
-        public void setZoomMode(ZoomMode zoomMode) {
+        public void SetZoomMode(ZoomMode zoomMode) {
             this.zoomMode = zoomMode;
         }
 
-        public float getAccuracyBoost() {
+        public float GetAccuracyBoost() {
             return accuracyBoost;
         }
 
-        public void setAccuracyBoost(float accuracyBoost) {
+        public void SetAccuracyBoost(float accuracyBoost) {
             this.accuracyBoost = accuracyBoost;
         }
     }

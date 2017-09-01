@@ -32,19 +32,19 @@ namespace Items {
         	this.firingMode = firingMode;
         }
 
-        public float getFireRate() {
+        public float GetFireRate() {
         	return fireRate;
         }
 
-        public void setFireRate(float fireRate) {
+        public void SetFireRate(float fireRate) {
         	this.fireRate = fireRate;
         }
 
-        public FiringMode getFiringMode() {
+        public FiringMode GetFiringMode() {
         	return firingMode;
         }
 
-        public void setFiringMode(FiringMode firingMode) {
+        public void SetFiringMode(FiringMode firingMode) {
         	this.firingMode = firingMode;
         }
     }

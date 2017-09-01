@@ -33,19 +33,19 @@ namespace Items {
         	this.accruacyBoost = accruacyBoost;
         }
 
-        public float getStabilityBoost() {
+        public float GetStabilityBoost() {
         	return stabilityBoost;
         }
 
-        public void setStabilityBoost(float stabilityBoost) {
+        public void SetStabilityBoost(float stabilityBoost) {
         	this.stabilityBoost = stabilityBoost;
         }
 
-        public float getAccuracyBoost() {
+        public float GetAccuracyBoost() {
         	return accruacyBoost;
         }
 
-        public void setAccuracyBoost(float accruacyBoost) {
+        public void SetAccuracyBoost(float accruacyBoost) {
         	this.accruacyBoost = accruacyBoost;
         }
     }

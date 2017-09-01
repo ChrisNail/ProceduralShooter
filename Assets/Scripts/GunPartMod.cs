@@ -29,11 +29,11 @@ namespace Items {
         	
         }
 
-        public DamageType getDamageType() {
+        public DamageType GetDamageType() {
             return damageType;
         }
 
-        public void setDamageType(DamageType damageType) {
+        public void SetDamageType(DamageType damageType) {
             this.damageType = damageType;
         }
     }

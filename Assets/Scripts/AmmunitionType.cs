@@ -19,11 +19,11 @@ namespace Items {
         	this.consumedAmmo = consumedAmmo;
         }
 
-        public string getName() {
+        public string GetName() {
         	return name;
         }
 
-        public int getConsumedAmmo() {
+        public int GetConsumedAmmo() {
         	return consumedAmmo;
         }
     }

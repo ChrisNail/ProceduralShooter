@@ -32,19 +32,19 @@ namespace Items {
         	this.projectileSpeed = projectileSpeed;
         }
 
-        public float getDamageBoost() {
+        public float GetDamageBoost() {
         	return damageBoost;
         }
 
-        public void setDamageBoost(float damageBoost) {
+        public void SetDamageBoost(float damageBoost) {
         	this.damageBoost = damageBoost;
         }
 
-        public float getProjectileSpeed() {
+        public float GetProjectileSpeed() {
         	return projectileSpeed;
         }
 
-        public void setProjectileSpeed(float projectileSpeed) {
+        public void SetProjectileSpeed(float projectileSpeed) {
         	this.projectileSpeed = projectileSpeed;
         }
     }

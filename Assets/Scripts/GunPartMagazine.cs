@@ -31,19 +31,19 @@ namespace Items {
         	this.reloadSpeed = reloadSpeed;
         }
 
-        public float getCapacity() {
+        public float GetCapacity() {
         	return capacity;
         }
 
-        public void setCapacity(float capacity) {
+        public void SetCapacity(float capacity) {
         	this.capacity = capacity;
         }
 
-        public float getReloadSpeed() {
+        public float GetReloadSpeed() {
         	return reloadSpeed;
         }
 
-        public void setReloadSpeed(float reloadSpeed) {
+        public void SetReloadSpeed(float reloadSpeed) {
         	this.reloadSpeed = reloadSpeed;
         }
     }

@@ -13,7 +13,7 @@ namespace Items {
             this.type = type;
         }
 
-        public bool canFire(bool triggered, bool firing) {
+        public bool CanFire(bool triggered, bool firing) {
             switch(type) {
                 case FiringModeType.Single:
                     return triggered && !firing;

@@ -16,12 +16,16 @@ namespace Items {
 
         //Amount of ammo in the magazine
         private int ammo = 0;
-        //The gun has had the trigger down last frame
-        private bool firing = false;
+        //Trigger currently down
+        private bool isTriggered = false;
+        //Trigger was down last frame
+        private bool isFiring = false;
         //The amount of shots that have been charged by the gun
         private int chargedShots = 0;
         //Amount of time before next shot
         private float speedTimer = 0.0f;
+        //Player has the weapon equipped
+        private bool isEquipped;
 
         /**
          * Creates a blank Gun
@@ -56,24 +60,27 @@ namespace Items {
 
         // Update is called once per frame
         public override void Update() {
-            bool triggered = Input.GetButtonDown("Fire1");
-            if (!triggered) {
-                firing = false;
+
+        }
+
+        public void Fire(bool isTriggered) {
+            if (!isTriggered) {
+                isFiring = false;
             }
 
-            if (checkSpeedTimer()) {
-                if (getFiringMode().canFire(triggered, firing)) {
-
+            if (checkSpeedTimer() && GetFiringMode().CanFire(isTriggered, isFiring)) {
+                if (ConsumeAmmo()) {
+                    
                 }
             }
 
 
-            firing = triggered;
+            isFiring = isTriggered;
         }
 
-        public bool consumeAmmo() {
-            if (ammo > getAmmunitionType().getConsumedAmmo()) {
-                ammo -= getAmmunitionType().getConsumedAmmo();
+        public bool ConsumeAmmo() {
+            if (ammo > GetAmmunitionType().GetConsumedAmmo()) {
+                ammo -= GetAmmunitionType().GetConsumedAmmo();
                 
                 return true;
             }
@@ -81,29 +88,29 @@ namespace Items {
             return false;
         }
 
-        public bool getFiring() {
-            return firing;
+        public bool IsFiring() {
+            return isFiring;
         }
 
-        public void setFiring(bool firing) {
-            this.firing = firing;
+        public void SetFiring(bool isFiring) {
+            this.isFiring = isFiring;
         }
 
-        public bool toggleFiring() {
-            firing = !firing;
+        public bool ToggleIsFiring() {
+            isFiring = !isFiring;
 
-            return firing;
+            return isFiring;
         }
 
-        public int getChargedShots() {
+        public int GetChargedShots() {
             return chargedShots;
         }
 
-        public void setChargedShots(int chargedShots) {
+        public void SetChargedShots(int chargedShots) {
             this.chargedShots = chargedShots;
         }
 
-        public bool checkSpeedTimer() {
+        public bool CheckSpeedTimer() {
             if (speedTimer > 0.0f)
                 speedTimer -= Time.deltaTime;
             if(speedTimer < 0.0f)
@@ -111,72 +118,72 @@ namespace Items {
             return speedTimer == 0.0f;
         }
 
-        public GunPartBarrel getBarrel() {
+        public GunPartBarrel GetBarrel() {
             return barrel;
         }
 
-        public void setBarrel(GunPartBarrel barrel) {
+        public void SetBarrel(GunPartBarrel barrel) {
             this.barrel = barrel;
         }
 
-        public GunPartBody getBody() {
+        public GunPartBody GetBody() {
             return body;
         }
 
-        public void setBody(GunPartBody body) {
+        public void SetBody(GunPartBody body) {
             this.body = body;
         }
 
-        public GunPartMagazine getMagazine() {
+        public GunPartMagazine GetMagazine() {
             return magazine;
         }
 
-        public void setMagazine(GunPartMagazine magazine) {
+        public void SetMagazine(GunPartMagazine magazine) {
             this.magazine = magazine;
         }
 
-        public GunPartMod getMod() {
+        public GunPartMod GetMod() {
             return mod;
         }
 
-        public void setMod(GunPartMod mod) {
+        public void SetMod(GunPartMod mod) {
             this.mod = mod;
         }
 
-        public GunPartSight getSight() {
+        public GunPartSight GetSight() {
             return sight;
         }
 
-        public void setSight(GunPartSight sight) {
+        public void SetSight(GunPartSight sight) {
             this.sight = sight;
         }
 
-        public GunPartStock getStock() {
+        public GunPartStock GetStock() {
             return stock;
         }
 
-        public void setStock(GunPartStock stock) {
+        public void SetStock(GunPartStock stock) {
             this.stock = stock;
         }
 
-        public GunPartTrigger getTrigger() {
+        public GunPartTrigger GetTrigger() {
             return trigger;
         }
 
-        public void setTrigger(GunPartTrigger trigger) {
+        public void SetTrigger(GunPartTrigger trigger) {
             this.trigger = trigger;
         }
 
-        public float getLevel() {
+        public float GetLevel() {
             float total = 0;
 
-            total += barrel.getLevel();
-            total += body.getLevel();
-            total += magazine.getLevel();
-            total += mod.getLevel();
-            total += sight.getLevel();
-            total += stock.getLevel();
-            total += trigger.getLevel();
+            total += barrel.GetLevel();
+            total += body.GetLevel();
+            total += magazine.GetLevel();
+            total += mod.GetLevel();
+            total += sight.GetLevel();
+            total += stock.GetLevel();
+            total += trigger.GetLevel();
 
             total = total / 7.0f;
             total = Mathf.Round(total);
@@ -187,57 +194,57 @@ namespace Items {
         /**
          * Return the total damage from body barrel
         */
-        public float getDamage() {
-            return body.getBaseDamage() * barrel.getDamageBoost();
+        public float GetDamage() {
+            return body.GetBaseDamage() * barrel.GetDamageBoost();
         }
 
         /**
          * Return the ammunition from body
         */
-        public AmmunitionType getAmmunitionType() {
-            return body.getAmmunitionType();
+        public AmmunitionType GetAmmunitionType() {
+            return body.GetAmmunitionType();
         }
 
         /**
          * Return damage type from mod
         */
-        public DamageType getDamageType() {
-            return mod.getDamageType();
+        public DamageType GetDamageType() {
+            return mod.GetDamageType();
         }
 
         /**
          * Return rate of fire from trigger
         */
-        public float getFireRate() {
-            return trigger.getFireRate();
+        public float GetFireRate() {
+            return trigger.GetFireRate();
         }
 
         /**
          * Return firing mode from trigger
         */
-        public FiringMode getFiringMode() {
-            return trigger.getFiringMode();
+        public FiringMode GetFiringMode() {
+            return trigger.GetFiringMode();
         }
 
         /**
          * Return capacity from magazine
         */
-        public float getCapacity() {
-            return magazine.getCapacity();
+        public float GetCapacity() {
+            return magazine.GetCapacity();
         }
 
         /**
          * Return reload speed from magazine
         */
-        public float getReloadSpeed() {
-            return magazine.getReloadSpeed();
+        public float GetReloadSpeed() {
+            return magazine.GetReloadSpeed();
         }
 
         /**
          * Return projectile speed from barrel
         */
-        public float getProjectileSpeed() {
-            return barrel.getProjectileSpeed();
+        public float GetProjectileSpeed() {
+            return barrel.GetProjectileSpeed();
         }
     }
 }

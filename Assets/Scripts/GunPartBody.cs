@@ -32,19 +32,19 @@ namespace Items {
         	this.baseDamage = baseDamage;
         }
 
-        public float getBaseDamage() {
+        public float GetBaseDamage() {
         	return baseDamage;
         }
 
-        public void setBaseDamage(float baseDamage) {
+        public void SetBaseDamage(float baseDamage) {
         	this.baseDamage = baseDamage;
         }
 
-        public AmmunitionType getAmmunitionType() {
+        public AmmunitionType GetAmmunitionType() {
         	return ammunitionType;
         }
 
-        public void setAmmunitionType(AmmunitionType ammunitionType) {
+        public void SetAmmunitionType(AmmunitionType ammunitionType) {
         	this.ammunitionType = ammunitionType;
         }
     }

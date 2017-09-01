@@ -8,11 +8,11 @@ namespace Items {
 
     	private int level;
 
-    	public int getLevel() {
+    	public int GetLevel() {
     		return level;
     	}
 
-    	public void setLevel(int level) {
+    	public void SetLevel(int level) {
     		this.level = level;
     	}
     }
