@@ -78,12 +78,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AmmunitionType.cs" />
     <Compile Include="Assets\Scripts\DamageType.cs" />
+    <Compile Include="Assets\Scripts\FiringMode.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\GunPart.cs" />
     <Compile Include="Assets\Scripts\GunPartBarrel.cs" />
     <Compile Include="Assets\Scripts\GunPartBody.cs" />
-    <Compile Include="Assets\Scripts\GunPartScope.cs" />
+    <Compile Include="Assets\Scripts\GunPartMagazine.cs" />
+    <Compile Include="Assets\Scripts\GunPartMod.cs" />
+    <Compile Include="Assets\Scripts\GunPartSight.cs" />
     <Compile Include="Assets\Scripts\GunPartStock.cs" />
     <Compile Include="Assets\Scripts\GunPartTrigger.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />

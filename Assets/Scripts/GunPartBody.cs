@@ -7,14 +7,14 @@ namespace Items {
     public class GunPartBody : GunPart {
 
         private float baseDamage;
-        private AmmunitionType AmmunitionType;
+        private AmmunitionType ammunitionType;
 
         /**
          * Creates a blank GunPartBody
         */
         public GunPartBody() {
             baseDamage = 0.0f;
-            AmmunitionType = AmmunitionType.Bullet;
+            ammunitionType = AmmunitionType.Bullet;
         }
 
         /**

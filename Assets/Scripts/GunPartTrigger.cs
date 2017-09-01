@@ -6,14 +6,14 @@ namespace Items {
 
     public class GunPartTrigger : GunPart {
 
-    	private float rateOfFire;
+    	private float fireRate;
     	private FiringMode firingMode;
 
     	/**
          * Creates a blank GunPartTrigger
         */
         public GunPartTrigger() {
-            rateOfFire = 1.0f;
+            fireRate = 1.0f;
             firingMode = FiringMode.Single;
         }
 
@@ -27,21 +27,21 @@ namespace Items {
             //Firing Mode Tiers?
         }
 
-        public GunPartTrigger(float rateOfFire, FiringMode firingMode) {
-        	this.rateOfFire = rateOfFire;
+        public GunPartTrigger(float fireRate, FiringMode firingMode) {
+        	this.fireRate = fireRate;
         	this.firingMode = firingMode;
         }
 
-        public float getRateOfFire() {
-        	return rateOfFire;
+        public float getFireRate() {
+        	return fireRate;
         }
 
-        public void setRateOfFire(float rateOfFire) {
-        	this.rateOfFire = rateOfFire;
+        public void setFireRate(float fireRate) {
+        	this.fireRate = fireRate;
         }
 
         public FiringMode getFiringMode() {
-        	reutrn firingMode;
+        	return firingMode;
         }
 
         public void setFiringMode(FiringMode firingMode) {

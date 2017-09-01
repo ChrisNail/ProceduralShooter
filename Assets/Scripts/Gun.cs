@@ -15,13 +15,13 @@ namespace Items {
         private GunPartTrigger trigger;
 
         //Amount of ammo in the magazine
-        private int ammo;
-        //Whether or not this gun is firing
-        private bool firing;
-        //Time left until the next available shot
-        private float speedTimer;
+        private int ammo = 0;
+        //The gun has had the trigger down last frame
+        private bool firing = false;
         //The amount of shots that have been charged by the gun
-        private int chargedShots;
+        private int chargedShots = 0;
+        //Amount of time before next shot
+        private float speedTimer = 0.0f;
 
         /**
          * Creates a blank Gun
@@ -56,20 +56,19 @@ namespace Items {
 
         // Update is called once per frame
         public override void Update() {
-            //Take time since last frame away from firing speed countdown
-            speedTimer -= Time.deltaTime;
-            if (speedTimer < 0.0)
-                speedTimer = 0.0;
-
-            if (firing && speedTimer <= 0.0 && consumeAmmo()) {
-                if (FiringMode.Charge.Equals(getFiringMode())) {
-                    chargeShot();
-                } else {
-                    fireShot();
-                }
-            } else if (!firing && chargedShots > 0) {
-                fireCharge();
+            bool triggered = Input.GetButtonDown("Fire1");
+            if (!triggered) {
+                firing = false;
             }
+
+            if (checkSpeedTimer()) {
+                if (getFiringMode().canFire(triggered, firing)) {
+
+                }
+            }
+
+
+            firing = triggered;
         }
 
         public bool consumeAmmo() {
@@ -82,10 +81,6 @@ namespace Items {
             return false;
         }
 
-        public void chargeShot() {
-            
-        }
-
         public bool getFiring() {
             return firing;
         }
@@ -96,6 +91,8 @@ namespace Items {
 
         public bool toggleFiring() {
             firing = !firing;
+
+            return firing;
         }
 
         public int getChargedShots() {
@@ -104,6 +101,14 @@ namespace Items {
 
         public void setChargedShots(int chargedShots) {
             this.chargedShots = chargedShots;
+        }
+
+        public bool checkSpeedTimer() {
+            if (speedTimer > 0.0f)
+                speedTimer -= Time.deltaTime;
+            if(speedTimer < 0.0f)
+                speedTimer = 0.0f;
+            return speedTimer == 0.0f;
         }
 
         public GunPartBarrel getBarrel() {
@@ -173,8 +178,8 @@ namespace Items {
             total += stock.getLevel();
             total += trigger.getLevel();
 
-            total = total / 7.0;
-            total = Mathf.round(total);
+            total = total / 7.0f;
+            total = Mathf.Round(total);
 
             return total;
         }
@@ -203,8 +208,8 @@ namespace Items {
         /**
          * Return rate of fire from trigger
         */
-        public float getRateOfFire() {
-            return trigger.getRateOfFire();
+        public float getFireRate() {
+            return trigger.getFireRate();
         }
 
         /**

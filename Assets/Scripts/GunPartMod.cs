@@ -24,7 +24,7 @@ namespace Items {
             //Damage Type Tiers?
         }
 
-        public GunPartBody(DamageType damageType) {
+        public GunPartMod(DamageType damageType) {
         	this.damageType = damageType;
         	
         }
