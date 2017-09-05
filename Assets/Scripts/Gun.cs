@@ -19,7 +19,7 @@ namespace Items {
         //Trigger currently down
         //private bool isTriggered = false;
         //Trigger was down last frame
-        private bool isFiring = false;
+        private bool wasTriggered = false;
         //The amount of shots that have been charged by the gun
         private int chargedShots = 0;
         //Amount of time before next shot
@@ -64,42 +64,57 @@ namespace Items {
         }
 
         public void Fire(bool isTriggered) {
-            if (!isTriggered) {
-                isFiring = false;
+            // if (!isTriggered) {
+            //     isFiring = false;
+            // }
+
+            //Charge the weapon if it can be charged
+            if (CheckSpeedTimer() && GetFiringMode().CanCharge(isTriggered, wasTriggered)) {
+                if (CanConsumeAmmo()) {
+                    chargedShots += ConsumeAmmo();
+                }
             }
 
-            if (CheckSpeedTimer() && GetFiringMode().CanFire(isTriggered, isFiring)) {
-                if (ConsumeAmmo()) {
+            //Fire the weapon if it can be fired
+            if (CheckSpeedTimer() && GetFiringMode().CanFire(isTriggered, wasTriggered)) {
+                if (CanConsumeAmmo()) {
+                    //Create projectile
+                    projectile = GetAmmunitionType().CreateProjectile();
+                    //Set properties
                     
+                    //Set speed
+                    if (projectile.GetComponent<Rigidbody>() != null) {
+                        projectile.GetComponent<Rigidbody>().AddForce(, ForceMode.VelocityChange);
+                    }
                 }
             }
 
 
-            isFiring = isTriggered;
+            wasTriggered = isTriggered;
         }
 
-        public bool ConsumeAmmo() {
-            if (ammo > GetAmmunitionType().GetConsumedAmmo()) {
-                ammo -= GetAmmunitionType().GetConsumedAmmo();
-                
-                return true;
-            }
-
-            return false;
+        public bool CanConsumeAmmo() {
+            return ammo > GetAmmunitionType().GetConsumedAmmo()
         }
 
-        public bool IsFiring() {
-            return isFiring;
+        public int ConsumeAmmo() {
+            ammo -= GetAmmunitionType().GetConsumedAmmo();
+
+            return GetAmmunitionType().GetConsumedAmmo();
         }
 
-        public void SetFiring(bool isFiring) {
-            this.isFiring = isFiring;
+        public bool WasTriggered() {
+            return wasTriggered;
         }
 
-        public bool ToggleIsFiring() {
-            isFiring = !isFiring;
+        public void SetFiring(bool wasTriggered) {
+            this.wasTriggered = wasTriggered;
+        }
 
-            return isFiring;
+        public bool ToggleWasTriggered() {
+            wasTriggered = !wasTriggered;
+
+            return wasTriggered;
         }
 
         public int GetChargedShots() {

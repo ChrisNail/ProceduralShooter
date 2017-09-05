@@ -8,6 +8,7 @@ namespace Items {
 
     	private string name;
     	private int consumedAmmo;
+        private GameObject projectile;
 
         public static readonly AmmunitionType Bullet = new AmmunitionType("Bullet", 1);
         public static readonly AmmunitionType Beam = new AmmunitionType("Beam", 1);
@@ -17,6 +18,8 @@ namespace Items {
         public AmmunitionType(string name, int consumedAmmo) {
         	this.name = name;
         	this.consumedAmmo = consumedAmmo;
+
+            projectile = Resources.Load("Prefabs/" + name);
         }
 
         public string GetName() {
@@ -25,6 +28,10 @@ namespace Items {
 
         public int GetConsumedAmmo() {
         	return consumedAmmo;
+        }
+
+        public Object CreateProjectile(Vector3 position, Quaternion rotation) {
+            GameObject newProjectile = Instantiate(projectile, position, rotation);
         }
     }
 }

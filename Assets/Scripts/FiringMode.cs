@@ -13,14 +13,23 @@ namespace Items {
             this.type = type;
         }
 
-        public bool CanFire(bool triggered, bool firing) {
+        public bool CanFire(bool isTriggered, bool wasTriggered) {
             switch(type) {
                 case FiringModeType.Single:
-                    return triggered && !firing;
+                    return isTriggered && !wasTriggered;
                 case FiringModeType.Auto:
-                    return triggered;
+                    return isTriggered;
                 case FiringModeType.Charge:
-                    return triggered || (!triggered && firing);
+                    return !isTriggered && wasTriggered;
+                default:
+                    return false;
+            }
+        }
+
+        public bool CanCharge(bool isTriggered, bool wasTriggered) {
+            switch(type) {
+                case FiringModeType.Charge:
+                    return isTriggered;
                 default:
                     return false;
             }
