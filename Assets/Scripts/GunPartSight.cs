@@ -13,7 +13,7 @@ namespace Items {
          * Creates a blank GunPartSight
         */
         public GunPartSight() {
-            zoomMode = ZoomMode.Iron;
+            zoomMode = ZoomMode.None;
             accuracyBoost = 1.0f;
         }
 

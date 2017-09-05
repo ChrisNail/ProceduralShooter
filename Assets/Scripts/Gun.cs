@@ -17,7 +17,7 @@ namespace Items {
         //Amount of ammo in the magazine
         private int ammo = 0;
         //Trigger currently down
-        private bool isTriggered = false;
+        //private bool isTriggered = false;
         //Trigger was down last frame
         private bool isFiring = false;
         //The amount of shots that have been charged by the gun
@@ -68,7 +68,7 @@ namespace Items {
                 isFiring = false;
             }
 
-            if (checkSpeedTimer() && GetFiringMode().CanFire(isTriggered, isFiring)) {
+            if (CheckSpeedTimer() && GetFiringMode().CanFire(isTriggered, isFiring)) {
                 if (ConsumeAmmo()) {
                     
                 }
